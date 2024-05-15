@@ -1,4 +1,4 @@
-# FastAPI Backend & Next.js Frontend
+# Srvstu
 
 This repository contains a simple setup for running a FastAPI backend and a Next.js frontend. 
 
@@ -20,8 +20,17 @@ Before you start, ensure you have the following installed on your system:
 2. **Install Dependencies:**
 
     ```bash
+    # Go to the machine directory and install Python dependencies
+    # Use virtual environment 
+    cd machine
+    python -m venv env-training
+    venv\Scripts\activate
+    pip install -r requirements.txt
+    
     # Go to the backend directory and install Python dependencies
+    # Use virtual environment 
     cd backend
+    python -m venv env-deployment
     pip install -r requirements.txt
 
     # Go to the frontend directory and install Node.js dependencies
@@ -29,6 +38,15 @@ Before you start, ensure you have the following installed on your system:
     npm install  # or yarn install
     ```
 
+## Train the model
+1. **Simply run the jupyter notebook to get the model**
+     ```bash
+    # From the root directory
+    cd machine
+    venv\Scripts\activate
+    code .
+     
+    ```
 ## Running the Backend
 
 1. **Start the FastAPI Server:**
