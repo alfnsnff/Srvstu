@@ -45,7 +45,7 @@ Before you start, ensure you have the following installed on your system:
     # From the root directory
     cd machine
     venv\Scripts\activate
-    code . #To open on Visual Studio Code
+    code . #Open on the Visual Studio Code
     ```
      
 ## Running the Backend
