@@ -1,0 +1,4 @@
+# Backend
+## Fastapi
+# Frontend
+## NextJs
