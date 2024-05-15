@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+
+# Dependency directories
+venv/
+env/
+.venv/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# local env files
+.env*.local
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Miscellaneous
+.DS_Store
+Thumbs.db

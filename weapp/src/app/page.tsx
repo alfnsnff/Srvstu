@@ -10,21 +10,22 @@ const Home: NextPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/home");
+        
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/home`);
         if (!res.ok) {
           throw new Error("Failed to fetch home data");
         }
         const homeData = await res.json();
         setData(homeData["Name"]);
 
-        const resPicks = await fetch("http://127.0.0.1:8000/api/toppicks");
+        const resPicks = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/toppicks`);
         if (!resPicks.ok) {
           throw new Error("Failed to fetch top picks");
         }
         const dataPicks = await resPicks.json();
         setDataPicks(dataPicks["Top Picks"]);
 
-        const resMaps = await fetch("http://127.0.0.1:8000/api/topmaps");
+        const resMaps = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/topmaps`);
         if (!resMaps.ok) {
           throw new Error("Failed to fetch top maps");
         }
