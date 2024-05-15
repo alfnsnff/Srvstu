@@ -39,14 +39,15 @@ Before you start, ensure you have the following installed on your system:
     ```
 
 ## Train the model
+
 1. **Simply run the jupyter notebook to get the model**
      ```bash
     # From the root directory
     cd machine
     venv\Scripts\activate
-    code .
-     
+    code . #To open on Visual Studio Code
     ```
+     
 ## Running the Backend
 
 1. **Start the FastAPI Server:**
