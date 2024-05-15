@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+
+# Dependency directories
+venv/
+env/
+.venv/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Local environment files
+.env*.local
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Model checkpoints and artifacts
+models/
+*.h5
+*.pth
+*.pkl
+
+# Data files
+data/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
