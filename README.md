@@ -69,7 +69,7 @@ Before you start, ensure you have the following installed on your system:
     ```bash
     # From the root directory
     cd frontend
-    echo NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000 > .env.local
+    cp .env.example .env.local
     npm run dev  # or yarn dev
     ```
 
