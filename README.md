@@ -29,7 +29,7 @@ Before you start, ensure you have the following installed on your system:
     
     # Go to the backend directory and install Python dependencies
     # Use virtual environment 
-    cd backend
+    cd ../backend
     python -m venv env-deployment
     pip install -r requirements.txt
 
