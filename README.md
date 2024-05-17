@@ -36,6 +36,7 @@ Before you start, ensure you have the following installed on your system:
 
     # Go to the frontend directory and install Node.js dependencies
     cd ../frontend
+    cp .env.example .env.local
     npm install  # or yarn install
     ```
 
@@ -70,7 +71,6 @@ Before you start, ensure you have the following installed on your system:
     ```bash
     # From the root directory
     cd frontend
-    cp .env.example .env.local
     npm run dev  # or yarn dev
     ```
 
@@ -80,6 +80,7 @@ Before you start, ensure you have the following installed on your system:
 
 ## Folder Structure
 
+- **frontend/**: Contains the Machine Learning code.
 - **backend/**: Contains the FastAPI backend code.
 - **frontend/**: Contains the Next.js frontend code.
 
