@@ -80,6 +80,7 @@ Before you start, ensure you have the following installed on your system:
 
 ## Folder Structure
 
+- **frontend/**: Contains the Machine Learning code.
 - **backend/**: Contains the FastAPI backend code.
 - **frontend/**: Contains the Next.js frontend code.
 
