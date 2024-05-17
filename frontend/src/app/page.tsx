@@ -39,7 +39,8 @@ const Home: NextPage = () => {
         }
 
         const result = await response.json();
-        setPredictionResult(result.prediction);
+        //setPredictionResult(result.prediction);
+        setPredictionResult(`${result.class}`);
       
       } catch (error) {
         console.error("Error fetching prediction:", error);
@@ -75,9 +76,9 @@ const Home: NextPage = () => {
         </form>
         
         <div className="mt-8">
+        <h2 className="flex text-xl font-semibold justify-center mb-3">Predicted Class:</h2>
           <div id="result" className="mt-4 text-center text-lg font-semibold">
             {predictionResult}
-            
           </div>
         </div>
       </div>
