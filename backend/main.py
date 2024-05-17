@@ -1,12 +1,11 @@
+import io
+import numpy as np
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-import numpy as np
+from fastapi.middleware.cors import CORSMiddleware
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array, load_img
-import io
-# include CORS
-from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
