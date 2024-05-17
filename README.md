@@ -31,6 +31,7 @@ Before you start, ensure you have the following installed on your system:
     # Use virtual environment 
     cd ../backend
     python -m venv env-deployment
+    venv\Scripts\activate
     pip install -r requirements.txt
 
     # Go to the frontend directory and install Node.js dependencies
