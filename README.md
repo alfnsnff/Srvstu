@@ -88,4 +88,4 @@ Before you start, ensure you have the following installed on your system:
 - **backend/**: Contains the FastAPI backend code.
 - **frontend/**: Contains the Next.js frontend code.
 
-Feel free to modify the code and adapt it according to your needs!
+Feel free to modify the code and adapt it according to your needs! [Collaborators Only!!]
