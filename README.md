@@ -41,7 +41,7 @@ Before you start, ensure you have the following installed on your system:
     ```
 
 3. **Download Datasets**
-   Access the datasets [here](https://github.com/alfnsnff/Tugas2ML/archive/refs/heads/master.zip)
+   Access the datasets source [here](https://www.kaggle.com/datasets/sadikaljarif/fruit-recognizer)
 
 ## Train the model
 
