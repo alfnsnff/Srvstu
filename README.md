@@ -40,6 +40,9 @@ Before you start, ensure you have the following installed on your system:
     npm install  # or yarn install
     ```
 
+3. **Download Datasets**
+   Access the datasets [here](https://github.com/alfnsnff/Tugas2ML/archive/refs/heads/master.zip)
+
 ## Train the model
 
 1. **Simply run the jupyter notebook to get the model**
