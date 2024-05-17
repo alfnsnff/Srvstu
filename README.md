@@ -42,7 +42,8 @@ Before you start, ensure you have the following installed on your system:
 
 3. **Download Datasets**
    Access the datasets source [here](https://www.kaggle.com/datasets/sadikaljarif/fruit-recognizer)
-
+   We also add some additional images, access the fully complete dataset [here](#)
+    
 ## Train the model
 
 1. **Simply run the jupyter notebook to get the model**
