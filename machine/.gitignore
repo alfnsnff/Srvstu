@@ -30,9 +30,6 @@ models/
 *.pth
 *.pkl
 
-# Data files
-data/
-
 # Jupyter notebook checkpoints
 .ipynb_checkpoints/
 
