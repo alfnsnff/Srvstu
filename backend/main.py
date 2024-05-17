@@ -1,4 +1,11 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+import numpy as np
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.image import img_to_array, load_img
+import io
+# include CORS
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -16,11 +23,19 @@ app.add_middleware(
 def read_home():
     return {"Name": "Asep"}
 
-@app.get("/api/toppicks")
-def read_toppicks():
-    return {"Top Picks": ["Jett", "Raze", "Omen", "Clove", "Sova"]}
-
-@app.get("/api/topmaps")
-def read_topmaps():
-    return {"Top Map": ["Lotus", "Ascent", "Pearl", "Sunset"]}
-
+# Load the model
+model = load_model('classify_fruit_model.h5')
+ 
+@app.post("/api/predict")
+async def predict(file: UploadFile = File(...)):
+    contents = await file.read()
+    image = load_img(io.BytesIO(contents), target_size=(180, 180))
+    image = img_to_array(image)
+    image = np.expand_dims(image, axis=0)
+    
+    prediction = model.predict(image)
+    predicted_class = np.argmax(prediction, axis=1)
+ 
+    class_names = ['Apple', 'Grape', 'Kiwi', 'Orange', 'Pineapple', 'Papaya', 'Watermelon', 'Lemon', 'Avocado', 'Raspberry', 'Lychee', 'Pear', 'Carambola', 'Mango', 'Banana', 'Cherry', 'Strawberry', 'Fig', 'Blueberry', 'Apricot']
+ 
+    return JSONResponse(content={'class': class_names[predicted_class[0]]})

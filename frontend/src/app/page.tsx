@@ -1,88 +1,84 @@
 "use client"
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const Home: NextPage = () => {
-  const [data, setData] = useState<string>("");
-  const [dataPicks, setDataPicks] = useState<string[]>([]);
-  const [dataMaps, setDataMaps] = useState<string[]>([]);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
+  const [predictionResult, setPredictionResult] = useState<string>("");
 
-  useEffect(() => {
-    const fetchData = async () => {
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreviewUrl(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const formData = new FormData();
+    const fileInput = (event.target as HTMLFormElement).elements.namedItem('prompt') as HTMLInputElement;
+    const file = fileInput?.files?.[0];
+
+    if (file) {
+      formData.append('file', file);
+
       try {
-        
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/home`);
-        if (!res.ok) {
-          throw new Error("Failed to fetch home data");
-        }
-        const homeData = await res.json();
-        setData(homeData["Name"]);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/predict`, {
+          method: 'POST',
+          body: formData,
+        });
 
-        const resPicks = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/toppicks`);
-        if (!resPicks.ok) {
-          throw new Error("Failed to fetch top picks");
+        if (!response.ok) {
+          throw new Error('Failed to fetch prediction');
         }
-        const dataPicks = await resPicks.json();
-        setDataPicks(dataPicks["Top Picks"]);
 
-        const resMaps = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/topmaps`);
-        if (!resMaps.ok) {
-          throw new Error("Failed to fetch top maps");
-        }
-        const dataMaps = await resMaps.json();
-        setDataMaps(dataMaps["Top Map"]);
+        const result = await response.json();
+        setPredictionResult(result.prediction);
+      
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching prediction:", error);
       }
-    };
-
-    fetchData();
-  }, []);
+    }
+  };
 
   return (
     <main className="container max-w-[1024px] mx-auto p-5">
       <div className="container max-w-[512px] mx-auto">
         <hgroup>
-          <h1 className="text-center text-5xl font-bold m-4">{data}</h1>
+          <h1 className="text-center text-5xl font-bold m-4">Fruit Classification</h1>
           <p className="text-center text-xl opacity-60 m-4">Top Picks</p>
         </hgroup>
-        <form className="animate-in fade-in duration-700">
+        <form className="animate-in fade-in duration-700" onSubmit={handleSubmit}>
           <div className="flex mt-4">
-            <input
+            <Input
               id="prompt-input"
-              type="text"
+              type="file"
               name="prompt"
               placeholder="Describe the image you want to create..."
-              className="block w-full flex-grow rounded-l-md border border-input focus:outline-none focus:border-primary px-4 py-3"
+              accept="image/*"
+              onChange={handleImageChange}
             />
+            <Button type="submit">Submit</Button>
+          </div>
 
-            <button
-              className="bg-primary text-primary-foreground inline-block px-5 py-3 flex-none rounded-r-md hover:bg-primary/80 transition duration-300"
-              type="submit"
-            >
-              Go
-            </button>
+          <div id="imagePreview" className="mb-4 flex justify-center mt-6">
+            {imagePreviewUrl && (
+              <img className="rounded-md" src={imagePreviewUrl} alt="Preview" style={{ width: '300px', height: '300px' }} />
+            )}
           </div>
         </form>
+        
         <div className="mt-8">
-          <h2 className="text-xl font-semibold mb-3">Top Picks:</h2>
-          <ul>
-            {dataPicks.map((pick: string, index: number) => (
-              <li key={index} className="text-lg mb-1">
-                {pick}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold mb-3">Top Map:</h2>
-          <ul>
-            {dataMaps.map((map: string, index: number) => (
-              <li key={index} className="text-lg mb-1">
-                {map}
-              </li>
-            ))}
-          </ul>
+          <div id="result" className="mt-4 text-center text-lg font-semibold">
+            {predictionResult}
+            
+          </div>
         </div>
       </div>
     </main>
