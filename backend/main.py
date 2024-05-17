@@ -18,12 +18,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/api/home")
-def read_home():
-    return {"Name": "Asep"}
-
 # Load the model
-model = load_model('models/classify_fruit_model.h5')
+model = load_model('models/classify_fruit_model.keras')
  
 @app.post("/api/predict")
 async def predict(file: UploadFile = File(...)):
@@ -35,6 +31,7 @@ async def predict(file: UploadFile = File(...)):
     prediction = model.predict(image)
     predicted_class = np.argmax(prediction, axis=1)
  
-    class_names = ['Apple', 'Grape', 'Kiwi', 'Orange', 'Pineapple', 'Papaya', 'Watermelon', 'Lemon', 'Avocado', 'Raspberry', 'Lychee', 'Pear', 'Carambola', 'Mango', 'Banana', 'Cherry', 'Strawberry', 'Fig', 'Blueberry', 'Apricot']
+    class_names = ['Apple', 'Apricot', 'Avocado', 'Banana', 'Blueberry', 'Carambola', 'Cherry', 'Fig', 'Grape', 'Kiwi', 'Lemon', 'Lychee', 'Mango', 'Orange', 'Papaya', 'Pear', 'Pineapple', 'Raspberry', 'Strawberry', 'Watermelon']
+    predicted_class_name = class_names[predicted_class[0]]
  
-    return JSONResponse(content={'class': class_names[predicted_class[0]]})
+    return JSONResponse(content={'class': predicted_class_name})
