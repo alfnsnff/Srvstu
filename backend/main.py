@@ -23,7 +23,7 @@ def read_home():
     return {"Name": "Asep"}
 
 # Load the model
-model = load_model('classify_fruit_model.h5')
+model = load_model('models/classify_fruit_model.h5')
  
 @app.post("/api/predict")
 async def predict(file: UploadFile = File(...)):
